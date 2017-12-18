@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
@@ -23,11 +24,11 @@ class Thread extends Model
     protected $hidden = [];
 
     /**
-     * Get threads.
+     * Get the user associated with this thread.
      */
     public function user()
     {
-        return $this->hasOne('App\User');
+        return User::find($this->user_id);
     }
 
     /**

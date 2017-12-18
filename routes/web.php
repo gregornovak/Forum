@@ -15,11 +15,11 @@
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/thread/create', 'ThreadController@create')->name('create_thread');
+    // Route::get('/thread/create', 'ThreadController@create')->name('create_thread');
     Route::post('/thread', 'ThreadController@store');
 });
 
-Route::get('/', 'ThreadController@index');
+Route::get('/', 'ThreadController@index')->name('index');
 Route::get('/thread/{id}', 'ThreadController@show')->name('show_thread');
 
 // Route::get('/home', 'HomeController@index')->name('home');

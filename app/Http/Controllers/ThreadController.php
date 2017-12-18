@@ -21,14 +21,26 @@ class ThreadController extends Controller
     }
 
     /**
-     * Show the thread.
+     * Show the thread with posts.
+     * 
+     * @return Illuminate\Http\Request
      */
     public function show($id)
     {
         $thread = Thread::find($id);
         $posts = $thread->posts;
-        // dd($posts);
         return view('thread.thread', compact('thread','posts'));
+    }
+
+    /**
+     * Show the form for thread editing.
+     * 
+     * @param id $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+
     }
 
     /**
@@ -38,14 +50,14 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        $threads = Thread::withCount('posts')->get();
-        // dd($threads);
-        // get the user associated with this post
+        $threads = Thread::withCount('posts')->paginate(10);
         return view('thread.index', ['threads' => $threads]);
     }
 
     /**
      * Create a form for the thread.
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -54,6 +66,8 @@ class ThreadController extends Controller
 
     /**
      * Store thread.
+     * 
+     * @return string
      */
     public function store(Request $request)
     {

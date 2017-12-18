@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,600);@charset "UTF-8";
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -1402,7 +1402,7 @@ html {
 }
 
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   line-height: 1.6;
   color: #636b6f;
@@ -7499,7 +7499,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Raleway", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -7633,7 +7633,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Raleway", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -8350,33 +8350,276 @@ button.close {
   }
 }
 
-.thread-list .list-group-item {
-  -webkit-transition: 0.2s background-color ease-in-out;
-  transition: 0.2s background-color ease-in-out;
+body {
+  background-color: #fff;
 }
 
-.thread-list .list-group-item:nth-child(2n) {
-  background-color: #f5f8fa;
+.navbar {
+  margin-bottom: 0;
 }
 
-.thread-list .list-group-item:nth-child(2n):hover {
+.navbar-default {
+  background-color: #2196f3;
+  border-color: #0c7cd5;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: #fff;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  background-color: #39a1f4;
+  color: #fff;
+}
+
+.navbar-default .navbar-brand {
+  color: #fff;
+  font-size: 24px;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: #fff;
+  background-color: #39a1f4;
+}
+
+.dropdown-menu {
+  background-color: #39a1f4;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.dropdown-menu li > a:hover {
+  background-color: #309df4;
+  color: #fff;
+}
+
+.dropdown-menu li > a:focus {
+  background-color: #309df4;
+  color: #fff;
+}
+
+.threads-list-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 35px;
+}
+
+.threads-list-container .thread-list {
+  border-radius: 2px;
+  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.threads-list-container .thread-list .list-group-item {
+  border: 0;
+  -webkit-box-shadow: inset 0 -6px 10px -8px rgba(0, 0, 0, 0.35);
+          box-shadow: inset 0 -6px 10px -8px rgba(0, 0, 0, 0.35);
+  -webkit-transition: 0.15s background-color ease-in-out;
+  transition: 0.15s background-color ease-in-out;
+}
+
+.threads-list-container .thread-list .list-group-item:hover {
   background-color: #f5f5f5;
 }
 
-.thread-heading {
+.threads-list-container .thread-list .list-group-item:first-child {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.threads-list-container .thread-list .list-group-item:last-child {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.thread-heading-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #43a6f5;
+  border-bottom: 1px solid #2b9bf4;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.thread-heading-container .thread-heading {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.thread-heading h3 {
+.thread-heading-container .thread-heading h2,
+.thread-heading-container .thread-heading h3 {
   -webkit-box-flex: 1;
       -ms-flex: 1 auto;
           flex: 1 auto;
+  color: #fff;
+  margin: 20px 0;
 }
 
-.thread-heading button {
+.thread-heading-container .thread-heading button {
   -ms-flex-item-align: center;
       align-self: center;
+}
+
+.thread-heading-container .thread-heading a {
+  -ms-flex-item-align: center;
+      align-self: center;
+  padding: 10px;
+  margin: 20px 15px 20px 0;
+  color: #2196f3;
+  background-color: #fff;
+  border-radius: 50%;
+  text-decoration: none;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.thread-heading-container .thread-heading a:hover {
+  -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 3px 4px rgba(0, 0, 0, 0.35);
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.thread-posts-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.thread-comment-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.heating-up {
+  background-color: #ffc107;
+}
+
+.hot-topic {
+  background-color: #ff5722;
+}
+
+.list-posts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-posts .list-post-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 15px 0;
+}
+
+.list-posts .list-post-item .post-info {
+  padding-bottom: 5px;
+}
+
+.list-posts .list-post-item .post-info .nickname {
+  color: #000;
+}
+
+.list-posts .list-post-item .post-info small {
+  font-style: italic;
+}
+
+.list-posts .list-post-item .post-body {
+  padding: 0 20px;
+}
+
+.login-notice {
+  padding: 30px 0;
+  text-align: center;
+}
+
+.add-thread-btn {
+  background-color: #fff;
+  color: #2196f3;
+  -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.add-thread-btn:hover {
+  -webkit-box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  background-color: #2196f3;
+}
+
+.add-post-btn {
+  background-color: #2196f3;
+  color: #fff;
+  -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.add-post-btn:hover {
+  -webkit-box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  background-color: #309df4;
+}
+
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px 0;
+  margin: 0;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+}
+
+.pagination li > a,
+.pagination li > span {
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+  border-radius: 4px;
+  margin: 0 4px;
+  color: #2196f3;
+  background-color: #fff;
+  border: 1px solid #2196f3;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+  background-color: #2196f3;
+  border-color: #0d8aee;
+}
+
+.pagination > li > a:hover,
+.pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus {
+  color: #ffffff;
+  background-color: #2196f3;
+  border-color: #2196f3;
 }
 
