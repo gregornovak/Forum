@@ -77,11 +77,10 @@
 
         <div class="container-fluid">
             <div class="row">
+                @include('notifications.flash_messages')
                 @yield('content')
             </div>
         </div>
     </div>
-
-
 </body>
 </html>

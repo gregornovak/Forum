@@ -8516,6 +8516,10 @@ body {
   background-color: #ff5722;
 }
 
+.cold-topic {
+  background-color: #66bb6a;
+}
+
 .list-posts {
   list-style: none;
   padding: 0;
@@ -8548,7 +8552,7 @@ body {
   text-align: center;
 }
 
-.add-thread-btn {
+.add-btn {
   background-color: #fff;
   color: #2196f3;
   -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
@@ -8557,7 +8561,7 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.add-thread-btn:hover {
+.add-btn:hover {
   -webkit-box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
           box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
   color: #fff;
@@ -8621,5 +8625,90 @@ body {
   color: #ffffff;
   background-color: #2196f3;
   border-color: #2196f3;
+}
+
+.modal-header {
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  border-color: #0d8aee;
+  background-color: #2196f3;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.modal-header h4 {
+  color: #fff;
+}
+
+.modal-footer {
+  -webkit-box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2);
+  border-color: #2b9bf4;
+  background-color: #43a6f5;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.flash-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-shadow: inset 0 -1px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 -1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.flash-container .flash-parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px 15px;
+  margin: 0 auto;
+}
+
+.flash-container .flash-parent p {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin: 0;
+  line-height: 15px;
+  font-weight: 600;
+}
+
+.flash-container .flash-parent .success-text {
+  color: #007905;
+}
+
+.flash-container .flash-parent .success-text-close {
+  -ms-flex-item-align: center;
+      align-self: center;
+  color: #007905;
+  cursor: pointer;
+}
+
+.flash-container .flash-parent .error-text {
+  color: #f44336;
+}
+
+.flash-container .flash-parent .error-text-close {
+  -ms-flex-item-align: center;
+      align-self: center;
+  color: #f44336;
+  cursor: pointer;
+}
+
+.flash-success-messages {
+  background-color: #66bb6a;
+}
+
+.flash-error-messages {
+  background-color: #ff8f8f;
+}
+
+.tooltip.top .tooltip-arrow {
+  border-top-color: #2196f3;
+}
+
+.tooltip-inner {
+  background-color: #2196f3;
 }
 

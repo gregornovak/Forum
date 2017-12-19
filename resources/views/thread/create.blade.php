@@ -7,7 +7,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" id="close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Add a new thread</h4>
             </div>
             <div class="modal-body">
@@ -27,7 +27,6 @@
                     <div class="form-group @if($errors->has('body')) has-error @endif">
                         <label for="body" class="control-label">Post message</label>
                         <textarea class="form-control" name="body" id="body" rows="10" placeholder="Enter your message.."></textarea>
-                        {{--  <input type="text" class="form-control" id="body" name="body" placeholder="Enter your message...">  --}}
                         @if ($errors->has('body')) 
                             <p class="help-block">
                                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -38,54 +37,35 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="submit-thread" type="button" class="btn btn-primary">Save changes</button>
+                {{--  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  --}}
+                <button id="submit-thread" type="button" class="btn add-btn">Save changes</button>
             </div>
         </div>
     </div>
 </div>
-    {{--  <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12">
-        <h1>Create a new thread</h1>
-        <hr class="break">
-        <form id="create-thread" method="post" action="{{ action('ThreadController@store') }}">
-            {{ csrf_field() }}
-            <div class="form-group @if($errors->has('title')) has-error @endif">
-                <label for="title" class="control-label">Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter thread title...">
-                @if ($errors->has('title')) 
-                    <p class="help-block">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        {{ $errors->first('title') }}
-                    </p>
-                @endif
-            </div>
-        
-            <button type="button" id="submit-thread" class="btn btn-default">Submit</button>
-        </form>
-    </div>  --}}
 <script>
 window.onload = function(){
 
     let btn = document.querySelector('#submit-thread');
     let form = document.querySelector('#create-thread');
-    let title = form.title;
-
+    let modalBody = document.querySelector('.modal-body');
     btn.addEventListener('click', addThread);
+
 
     function addThread(e) {
         e.preventDefault();
-        title.value.trim();
+        form.title.value.trim();
+        form.body.value.trim();
 
-        if(title.value.length >= 3 && form.body.value.length > 0) {
+        if(form.title.value.length >= 3 && form.body.value.length > 0) {
             axios.post('{{ action('ThreadController@store') }}', {
-                title: title.value,
+                title: form.title.value,
                 body: form.body.value
             })
             .then(function (response) {
                 window.location = response.data.redirect;
             })
             .catch(function (error) {
-                let modalBody = document.querySelector('.modal-body');
                 let notification = document.createElement('div');
                 notification.classList.add('alert', 'alert-danger');
                 notification.innerHTML = `${error.response.data.message}`;
@@ -93,67 +73,90 @@ window.onload = function(){
             });
 
             return;
-        }
 
-        let output = `
-            <p class="help-block">
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                Title must be atleast 5 characters long.
-            </p>`;
-
-        $('.form-group').addClass('has-error');
-        $('#title').after(output);
-    }
-
-    /*let btn = $('#submit-thread');
-    let form = $('#create-thread');
-
-    btn.on('click', function(e) {
-        e.preventDefault();
-        
-        let title = $('#title');
-        if(title.val().length >= 5) {
-            axios.post('{{ action('ThreadController@store') }}', {
-                title: title.val()
-            })
-            .then(function (response) {
-                window.location = response.data.redirect;
-            })
-            .catch(function (error) {
-
-                let errors = `
-                    <div class="alert alert-danger">
+        } else if(form.title.value.length == 0 && form.body.value.length > 0) {
+            let parent = form.title.parentElement;
+            parent.classList.add('has-error');
+            let notification = document.createElement('p');
+            notification.classList.add('help-block');
                         
-                    </div>`;
-
-
-                if(error.response.data.errors.title.length) {
-
-                    let output = `
-                        <p class="help-block">
-                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                            ${error.response.data.errors.title}
-                        </p>`;
-
-                    $('.form-group').addClass('has-error');
-                    $('#title').after(output);
-                }
-                
-            });
-            //form.submit();
+            let span = document.createElement('span');
+            span.classList.add('glyphicon', 'glyphicon-exclamation-sign');
+            
+            parent.appendChild(notification);
+            notification.appendChild(span);
+            let text = document.createTextNode('Title must be atleast 3 characters long.');
+            notification.appendChild(text);
+            
+            return;
+        } else if(form.title.value.length >= 3 && form.body.value.length == 0) {
+            let parent = form.body.parentElement;
+            parent.classList.add('has-error');
+            let notification = document.createElement('p');
+            notification.classList.add('help-block');
+                        
+            let span = document.createElement('span');
+            span.classList.add('glyphicon', 'glyphicon-exclamation-sign');
+            
+            parent.appendChild(notification);
+            notification.appendChild(span);
+            let text = document.createTextNode('Post message is a required field.');
+            notification.appendChild(text);
+            
             return;
         }
 
-        let output = `
-        <p class="help-block">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            Title must be atleast 5 characters long.
-        </p>`;
-
-        $('.form-group').addClass('has-error');
-        $('#title').after(output);
+        let titleParent = form.title.parentElement;
+        titleParent.classList.add('has-error');
+        let notification = document.createElement('p');
+        notification.classList.add('help-block');
+                    
+        let span = document.createElement('span');
+        span.classList.add('glyphicon', 'glyphicon-exclamation-sign');
         
-    });*/
+        titleParent.appendChild(notification);
+        notification.appendChild(span);
+        let text = document.createTextNode('Title must be atleast 3 characters long.');
+        notification.appendChild(text);
+        
+        let bodyParent = form.body.parentElement;
+        bodyParent.classList.add('has-error');
+        notification = document.createElement('p');
+        notification.classList.add('help-block');
+                    
+        span = document.createElement('span');
+        span.classList.add('glyphicon', 'glyphicon-exclamation-sign');
+        
+        bodyParent.appendChild(notification);
+        notification.appendChild(span);
+        text = document.createTextNode('Post message is a required field.');
+        notification.appendChild(text);
+        
+        return;
+    }
+
+    let close = document.querySelector('#close-modal');
+    close.addEventListener('click', clearErrors);
+
+    function clearErrors() {
+        let errors = document.querySelectorAll('.has-error');
+        let helpBlockErrors = document.querySelectorAll('.help-block');
+
+        if(errors.length) {
+            errors.forEach((err) => {
+                err.classList.remove('has-error');
+            });
+        }
+
+        if(helpBlockErrors.length) {
+            helpBlockErrors.forEach((err) => {
+                err.remove();
+            });
+        }
+
+        form.title.value = '';
+        form.body.value = '';
+    }
 };
 </script>
 {{--  @endsection  --}}
