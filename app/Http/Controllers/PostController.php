@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class PostController extends Controller
@@ -74,8 +77,13 @@ class PostController extends Controller
             'thread_id' => $request->thread_id
         ]);
 
-        // $request->session()->flash('success', "Your message has been added successfully!");
+        $user = User::where('id', $user_id)->update([
+            'num_of_posts' => DB::raw('num_of_posts+1')
+        ]);
         
+        if(!$post) {
+            return response()->json([ 'error' => 'Post could not be saved. Please try again.' ], 422);                    
+        }
 
         return ['success' => 'Your message has been added successfully!', 'body' => $request->body, 'user' => Auth::user()->nickname, 'created_at' => $post->created_at->diffForHumans()];
         // return redirect("/thread/$thread->id");

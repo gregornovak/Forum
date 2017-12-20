@@ -18,6 +18,8 @@ Route::group(['middleware' => ['auth']], function() {
     // Route::get('/thread/create', 'ThreadController@create')->name('create_thread');
     Route::post('/thread', 'ThreadController@store');
     Route::post('/posts', 'PostController@store');
+    Route::put('/thread', 'ThreadController@update');
+    Route::delete('/thread', 'ThreadController@delete');
 });
 
 Route::get('/', 'ThreadController@index')->name('index');

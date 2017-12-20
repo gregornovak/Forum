@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use App\Thread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class ThreadController extends Controller
 {
@@ -28,29 +29,58 @@ class ThreadController extends Controller
     public function show($id)
     {
         $thread = Thread::find($id);
+
+        $is_updated = false;
+        if($thread->updated_at->gt($thread->created_at)) {
+            $is_updated = true;
+        }
+        
         $posts = $thread->posts;
-        return view('thread.thread', compact('thread','posts'));
+        return view('thread.thread', compact('thread', 'posts', 'is_updated'));
     }
 
     /**
-     * Show the form for thread editing.
+     * Update the thread title.
      * 
      * @param id $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function update(Request $request)
     {
+        $request->validate([
+            'id' => 'required',
+            'title' => 'required|min:3'
+        ]);
 
+        $thread = Thread::find($request->id);
+
+        if(!$thread->count()) {
+            return response()->json([ 'error' => 'Title could not be updated. Please try again.' ], 422);        
+        }
+
+        if($thread->user_id != Auth::user()->id) {
+            return response()->json([ 'error' => 'You are not allowed to edit this thread.' ], 422);                    
+        }
+
+        $thread = $thread->update([
+            'title' => $request->title
+        ]);
+
+        if(!$thread) {
+            return response()->json([ 'error' => 'Title could not be updated. Please try again.' ], 422);        
+        }
+        
+        return response()->json([ 'success' => 'Title has been successfully updated.' ], 200);
     }
 
     /**
-     * Show all threads.
+     * Show all threads with posts count for each thread and paginate for 10 items per page.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $threads = Thread::withCount('posts')->paginate(10);
+        $threads = Thread::withCount('posts')->orderBy('created_at', 'desc')->paginate(10);
         return view('thread.index', ['threads' => $threads]);
     }
 
@@ -65,7 +95,7 @@ class ThreadController extends Controller
     }
 
     /**
-     * Store thread.
+     * Save thread, add the first post and increment users post count.
      * 
      * @return string
      */
@@ -89,10 +119,45 @@ class ThreadController extends Controller
             'thread_id' => $thread->id
         ]);
 
+        $user = User::where('id', $user_id)->update([
+            'num_of_posts' => DB::raw('num_of_posts+1')
+        ]);
+
+        if(!$thread) {
+            return response()->json([ 'error' => 'Thread could not be saved. Please try again.' ], 422);                    
+        }
+
         $request->session()->flash('success', "Thread '$request->title' was added successfully!");
         
 
         return ['redirect' => route('show_thread', $thread->id)];
-        // return redirect("/thread/$thread->id");
+    }
+
+    /**
+     * Delete thread.
+     * 
+     * @return string
+     */
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $user_id = (int)Auth::user()->id;
+
+        $thread = Thread::find($request->id);
+
+        if(!$thread->count()) {
+            return response()->json([ 'error' => 'Thread could not be deleted. Please try again.' ], 422);        
+        }
+
+        if($thread->user_id != Auth::user()->id) {
+            return response()->json([ 'error' => 'You are not allowed to delete this thread.' ], 422);                    
+        }
+
+        $request->session()->flash('success', "Thread '$thread->title' was deleted successfully!");
+        
+        return ['redirect' => route('index')];        
     }
 }

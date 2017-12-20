@@ -11,6 +11,9 @@
     {{--  <title>{{ config('app.name', 'Laravel') }}</title>  --}}
     <title>@yield('title')</title>
 
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Scripts -->

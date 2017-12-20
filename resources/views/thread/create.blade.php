@@ -26,7 +26,7 @@
 
                     <div class="form-group @if($errors->has('body')) has-error @endif">
                         <label for="body" class="control-label">Post message</label>
-                        <textarea class="form-control" name="body" id="body" rows="10" placeholder="Enter your message.."></textarea>
+                        <textarea class="form-control" name="body" id="body" rows="5" placeholder="Enter your message.."></textarea>
                         @if ($errors->has('body')) 
                             <p class="help-block">
                                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -68,7 +68,7 @@ window.onload = function(){
             .catch(function (error) {
                 let notification = document.createElement('div');
                 notification.classList.add('alert', 'alert-danger');
-                notification.innerHTML = `${error.response.data.message}`;
+                notification.innerHTML = `${error.response.data.error}`;
                 modalBody.insertBefore(notification, form);
             });
 

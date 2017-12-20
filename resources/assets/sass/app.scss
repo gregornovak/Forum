@@ -73,7 +73,7 @@ body {
 
         .list-group-item {
             border: 0;
-            box-shadow: inset 0 -6px 10px -8px $shadow-hover;
+            // box-shadow: inset 0 -6px 10px -8px $shadow-hover;
             transition: 0.15s background-color ease-in-out;
 
             &:hover {
@@ -108,6 +108,15 @@ body {
 
     .thread-heading {
         display: flex;
+        position: relative;
+
+        .thread-updated {
+            position: absolute;
+            bottom: 0;
+            left: 65px;
+            color: $violet;
+            font-size: 13px;
+        }
     
         h2, h3 {
             flex: 1 auto;
@@ -131,6 +140,7 @@ body {
             transition: all 0.25s ease-in-out;
     
             &:hover {
+                transform: translateY(-1px);            
                 box-shadow: 0 3px 4px $shadow-hover;
                 background-color: $blue;
                 color: $white;
@@ -147,19 +157,6 @@ body {
 .thread-comment-container {
     display: flex;
     
-}
-
-
-.heating-up {
-    background-color: $yellow;
-}
-
-.hot-topic {
-    background-color: $orange;
-}
-
-.cold-topic {
-    background-color: $green;
 }
 
 .list-posts {
@@ -201,6 +198,7 @@ body {
     transition: all 0.2s ease-in-out;
 
     &:hover {
+        transform: translateY(-1px);        
         box-shadow: 0 4px 4px -1px $shadow-hover;
         color: $white;
         background-color: $blue;
@@ -214,6 +212,7 @@ body {
     transition: all 0.2s ease-in-out;
 
     &:hover {
+        transform: translateY(-1px);        
         box-shadow: 0 4px 4px -1px $shadow-hover;
         color: $white;
         background-color: lighten($blue, 3%);
@@ -315,10 +314,115 @@ body {
     background-color: $light-red;
 }
 
-.tooltip.top .tooltip-arrow {
-    border-top-color: $blue;
+.thread-actions {
+    align-self: center;
+    
+    span {
+        padding: 10px;
+        box-shadow: 0 2px 2px $shadow;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .edit-thread-btn {
+        background-color: $violet;
+        color: $white;
+        
+        &:hover {
+            transform: translateY(-1px);            
+            box-shadow: 0 3px 4px $shadow-hover;
+            background-color: darken($violet, 5%);
+        }
+    }
+    
+    .delete-thread-btn {
+        background-color: $red;
+        color: $white;
+        margin-right: 10px;
+    
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 4px $shadow-hover;
+            background-color: darken($red, 5%);
+        }
+    }
 }
 
-.tooltip-inner {
-    background-color: $blue;
+.thread-list-title {
+    color: $black;
+}
+
+.thread-main {
+    display: flex;
+
+    .thread-title {
+        flex: 1 auto;
+    }
+
+    .posts-counter {
+        display: flex;
+
+        span {
+            align-self: center;
+        }
+
+        .count {
+            font-size: 15px;
+            margin-left: 5px;
+        }
+
+        .heating-up {
+            color: $yellow;
+        }
+        
+        .hot-topic {
+            color: $orange;
+        }
+        
+        .cold-topic {
+            color: $green;
+        }
+    }
+}
+
+.modal.in .modal-dialog {
+    transform: translate(0, 100px);
+}
+
+
+
+#delete-thread-modal {
+    .modal-body {
+        display: flex;
+        justify-content: space-between;
+
+        .btn-cancel-delete-thread {
+            background-color: $red;
+            color: $white;
+            box-shadow: 0 2px 2px -1px $shadow;
+            transition: all 0.2s ease-in-out;
+        
+            &:hover {
+                transform: translateY(-1px);        
+                box-shadow: 0 4px 4px -1px $shadow-hover;
+                color: $white;
+                background-color: lighten($red, 3%);
+            }
+        }
+    
+        .btn-delete-thread {
+            background-color: $green;
+            color: $white;
+            box-shadow: 0 2px 2px -1px $shadow;
+            transition: all 0.2s ease-in-out;
+        
+            &:hover {
+                transform: translateY(-1px);        
+                box-shadow: 0 4px 4px -1px $shadow-hover;
+                color: $white;
+                background-color: lighten($green, 3%);
+            }
+        }
+    }
 }

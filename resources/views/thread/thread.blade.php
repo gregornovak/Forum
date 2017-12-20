@@ -7,6 +7,15 @@
         <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 thread-heading">
             <a href="{{ route('index') }}" class="glyphicon glyphicon-chevron-left"></a>
             <h2>{{ $thread->title }}</h2>
+            @if($thread->user_id == Auth::user()->id)
+                <div class="thread-actions">
+                    <span class="glyphicon glyphicon-remove delete-thread-btn" data-toggle="modal" data-target="#delete-thread-modal"></span>
+                    <span class="glyphicon glyphicon-pencil edit-thread-btn" data-toggle="modal" data-target="#edit-thread-modal"></span>
+                </div>
+            @endif
+            @if($is_updated)
+                <span class="thread-updated">Updated {{ $thread->updated_at->diffForHumans() }}</span>
+            @endif
         </div>
     </div>
     <div class="thread-posts-container">
@@ -40,19 +49,24 @@
                         <input type="hidden" name="thread_id" value="{{ $thread->id }}">
                         <div class="form-group">
                             <label class="control-label" for="body">Your response</label>
-                            <textarea class="form-control" name="body" id="body" placeholder="Enter your message ..." rows="10"></textarea>
+                            <textarea class="form-control" name="body" id="body" placeholder="Enter your message ..." rows="5"></textarea>
                         </div>
                         <div class="form-group">
-                            <button type="button" class="btn add-post-btn" id="submit-post">Save</button>                    
+                            <button type="button" class="btn add-post-btn" id="submit-post">Post</button>                    
                         </div>
                     </form>
                 </div>
             @endguest
         </div>
     </div>
+
+    @if(Auth::user())
+        @include('thread.edit')
+        @include('thread.delete')
+    @endif
+
     <script>
-    window.onload = function(){
-        console.log('loaded');
+    document.addEventListener('DOMContentLoaded', function(){
         let btn = document.querySelector('#submit-post');
         let form = document.querySelector('#add-new-post');
         btn.addEventListener('click', addPost);
@@ -116,7 +130,7 @@
 
                     let textEl = document.createElement('p');
                     textEl.classList.add('error-text');
-                    textEl.textContent = error.response.data.message;
+                    textEl.textContent = error.response.data.error;
 
                     let closeBtn = document.createElement('span');
                     closeBtn.classList.add('glyphicon', 'glyphicon-remove', 'error-text-close', 'flash-close');
@@ -177,6 +191,6 @@
             }
         }
 
-    };
+    });
     </script>
 @endsection

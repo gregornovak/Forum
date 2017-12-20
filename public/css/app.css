@@ -8423,8 +8423,6 @@ body {
 
 .threads-list-container .thread-list .list-group-item {
   border: 0;
-  -webkit-box-shadow: inset 0 -6px 10px -8px rgba(0, 0, 0, 0.35);
-          box-shadow: inset 0 -6px 10px -8px rgba(0, 0, 0, 0.35);
   -webkit-transition: 0.15s background-color ease-in-out;
   transition: 0.15s background-color ease-in-out;
 }
@@ -8457,6 +8455,15 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
+}
+
+.thread-heading-container .thread-heading .thread-updated {
+  position: absolute;
+  bottom: 0;
+  left: 65px;
+  color: #3F51B5;
+  font-size: 13px;
 }
 
 .thread-heading-container .thread-heading h2,
@@ -8489,6 +8496,8 @@ body {
 }
 
 .thread-heading-container .thread-heading a:hover {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
   -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.35);
           box-shadow: 0 3px 4px rgba(0, 0, 0, 0.35);
   background-color: #2196f3;
@@ -8506,18 +8515,6 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.heating-up {
-  background-color: #ffc107;
-}
-
-.hot-topic {
-  background-color: #ff5722;
-}
-
-.cold-topic {
-  background-color: #66bb6a;
 }
 
 .list-posts {
@@ -8562,6 +8559,8 @@ body {
 }
 
 .add-btn:hover {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
   -webkit-box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
           box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
   color: #fff;
@@ -8578,6 +8577,8 @@ body {
 }
 
 .add-post-btn:hover {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
   -webkit-box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
           box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
   color: #fff;
@@ -8704,11 +8705,139 @@ body {
   background-color: #ff8f8f;
 }
 
-.tooltip.top .tooltip-arrow {
-  border-top-color: #2196f3;
+.thread-actions {
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 
-.tooltip-inner {
-  background-color: #2196f3;
+.thread-actions span {
+  padding: 10px;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.thread-actions .edit-thread-btn {
+  background-color: #3F51B5;
+  color: #fff;
+}
+
+.thread-actions .edit-thread-btn:hover {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 3px 4px rgba(0, 0, 0, 0.35);
+  background-color: #3849a2;
+}
+
+.thread-actions .delete-thread-btn {
+  background-color: #f44336;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.thread-actions .delete-thread-btn:hover {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 3px 4px rgba(0, 0, 0, 0.35);
+  background-color: #f32c1e;
+}
+
+.thread-list-title {
+  color: #000;
+}
+
+.thread-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.thread-main .thread-title {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 auto;
+          flex: 1 auto;
+}
+
+.thread-main .posts-counter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.thread-main .posts-counter span {
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.thread-main .posts-counter .count {
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+.thread-main .posts-counter .heating-up {
+  color: #ffc107;
+}
+
+.thread-main .posts-counter .hot-topic {
+  color: #ff5722;
+}
+
+.thread-main .posts-counter .cold-topic {
+  color: #66bb6a;
+}
+
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 100px);
+          transform: translate(0, 100px);
+}
+
+#delete-thread-modal .modal-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#delete-thread-modal .modal-body .btn-cancel-delete-thread {
+  background-color: #f44336;
+  color: #fff;
+  -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+#delete-thread-modal .modal-body .btn-cancel-delete-thread:hover {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  -webkit-box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  background-color: #f55145;
+}
+
+#delete-thread-modal .modal-body .btn-delete-thread {
+  background-color: #66bb6a;
+  color: #fff;
+  -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+#delete-thread-modal .modal-body .btn-delete-thread:hover {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  -webkit-box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  background-color: #71c074;
 }
 

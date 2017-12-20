@@ -25,10 +25,28 @@
                 <div class="list-group thread-list">
                     @foreach($threads as $thread)
                         <a href="/thread/{{ $thread->id }}" class="list-group-item">
-                            <span class="badge @if($thread->posts_count >= 10){{ 'hot-topic'}}@elseif($thread->posts_count >= 5){{ 'heating-up' }}@elseif($thread->posts_count >= 1){{ 'cold-topic' }}@endif" data-toggle="tooltip" data-placement="top" title="Number of posts">{{ $thread->posts_count }}</span>
-                            <strong>{{ $thread->title }}</strong>
-                            <br>
-                            <small>Posted by: <strong>{{ $thread->user()['nickname'] }}</strong>, {{ $thread->created_at->diffForHumans() }}</small>
+                            <div class="thread-main">
+                                <div class="thread-title">
+                                    <strong class="thread-list-title">{{ $thread->title }}</strong>                            
+                                </div>
+                                <div class="posts-counter">
+                                    @php
+                                    $className = '';
+                                    if($thread->posts_count >= 10) {
+                                        $className = 'hot-topic';
+                                    } elseif($thread->posts_count >= 5) {
+                                        $className = 'heating-up';
+                                    } elseif($thread->posts_count >= 1) {
+                                        $className = 'cold-topic';
+                                    }
+                                    @endphp
+                                    <span class="glyphicon glyphicon-comment {{ $className }}" data-toggle="tooltip" data-placement="top" title="Number of posts"></span>
+                                    <span class="count {{ $className }}">{{ $thread->posts_count }}</span>
+                                </div>
+                            </div>
+                            <div class="thread-info">
+                                <small>Posted by: <strong>{{ $thread->user()['nickname'] }}</strong>, {{ $thread->created_at->diffForHumans() }}</small>                            
+                            </div>
                         </a>
                     @endforeach
                 </ul>
