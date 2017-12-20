@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 window.location = response.data.redirect;
             })
             .catch(function (error) {
-                console.log(error.response);
                 let notification = document.createElement('div');
                 notification.classList.add('alert', 'alert-danger');
                 notification.textContent = `${error.response.data.error}`;

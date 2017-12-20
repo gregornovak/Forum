@@ -7,7 +7,7 @@
         <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 thread-heading">
             <a href="{{ route('index') }}" class="glyphicon glyphicon-chevron-left"></a>
             <h2>{{ $thread->title }}</h2>
-            @if($thread->user_id == Auth::user()->id)
+            @if(Auth::user() != null && $thread->user_id == Auth::user()->id)
                 <div class="thread-actions">
                     <span class="glyphicon glyphicon-remove delete-thread-btn" data-toggle="modal" data-target="#delete-thread-modal"></span>
                     <span class="glyphicon glyphicon-pencil edit-thread-btn" data-toggle="modal" data-target="#edit-thread-modal"></span>
@@ -28,11 +28,17 @@
                                 <strong class="nickname">{{ $post->user()['nickname'] }}</strong>, <small>{{ $post->created_at->diffForHumans() }}</small>
                             </div>
                             <div class="post-body">
-                                {{ $post->body }}                        
+                                <p class="post-{{ $post->id }}">{{ $post->body }}</p>
+                                @if(Auth::user() != null && Auth::user()->id == $post->user_id)
+                                    {{--  <span class="glyphicon glyphicon-pencil edit-post-btn" data-post-id="{{ $post->id }}" data-post-body="{{ $post->body }}"></span>                                  --}}
+                                    <button type="button" class="btn edit-post-btn" data-post-id="{{ $post->id }}" data-post-body="{{ $post->body }}">Edit</button>                                
+                                @endif
                             </div>
                         </li>
                     @endforeach
                 </ul>
+
+                {{ $posts->links() }}
             @else
                 <div class="alert alert-info">No posts yet</div>
             @endif
@@ -60,9 +66,13 @@
         </div>
     </div>
 
-    @if(Auth::user())
+    @if(Auth::user() != null && Auth::user()->id == $thread->id)
         @include('thread.edit')
         @include('thread.delete')
+    @endif
+
+    @if(Auth::user())
+        @include('post.edit')
     @endif
 
     <script>
@@ -190,6 +200,46 @@
                 e.target.parentElement.parentElement.remove();
             }
         }
+
+        let postList = document.querySelector('.list-posts');
+        postList.addEventListener('click', fillPostValues);
+        function fillPostValues(e) {
+            if(e.target.classList.contains('edit-post-btn')) {
+                let modal = document.querySelector('#edit-post-modal');
+
+                if(e.target.dataset.postBody && e.target.dataset.postId) {
+                    $(modal).modal('show');
+                    
+                    let postId = modal.querySelector('#post-id');
+                    let postBody = modal.querySelector('#post-body');
+
+                    postId.value = e.target.dataset.postId;
+                    postBody.value = e.target.dataset.postBody;
+                } else {
+                    // create necessary elements for the "flash message"
+                    let row = document.querySelector('.container-fluid .row');
+                    let rootEl = document.createElement('div');
+                    rootEl.classList.add('flash-container', 'flash-error-messages');
+
+                    let containerEl = document.createElement('div');
+                    containerEl.classList.add('col-lg-6', 'col-lg-offset-3', 'col-md-10', 'col-md-offset-1', 'col-sm-12', 'flash-parent');
+
+                    let textEl = document.createElement('p');
+                    textEl.classList.add('error-text');
+                    textEl.textContent = 'An error occured. Please try again later.';
+
+                    let closeBtn = document.createElement('span');
+                    closeBtn.classList.add('glyphicon', 'glyphicon-remove', 'error-text-close', 'flash-close');
+
+                    // append elements to the DOM
+                    row.insertBefore(rootEl, document.querySelector('.thread-heading-container'));
+                    rootEl.appendChild(containerEl);
+                    containerEl.appendChild(textEl);
+                    containerEl.appendChild(closeBtn);
+                }
+            }
+        }
+
 
     });
     </script>

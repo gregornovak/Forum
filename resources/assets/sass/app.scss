@@ -202,7 +202,15 @@ body {
         box-shadow: 0 4px 4px -1px $shadow-hover;
         color: $white;
         background-color: $blue;
+
+        &:disabled {
+            background-color: $white;
+            color: $blue;
+            box-shadow: 0 2px 2px -1px $shadow;
+            transform: translateY(0);
+        }
     }
+
 }
 
 .add-post-btn {
@@ -398,8 +406,7 @@ body {
         justify-content: space-between;
 
         .btn-cancel-delete-thread {
-            background-color: $red;
-            color: $white;
+            background-color: $red;color: $white;
             box-shadow: 0 2px 2px -1px $shadow;
             transition: all 0.2s ease-in-out;
         
@@ -424,5 +431,78 @@ body {
                 background-color: lighten($green, 3%);
             }
         }
+    }
+}
+
+.thread-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-body {
+    display: flex;
+
+    p {
+        flex: 1;
+        margin: 0;
+    }
+
+    .edit-post-btn {
+        box-shadow: 0 2px 2px $shadow;
+        transition: all 0.2s ease;
+        align-self: center;
+        background-color: $green;
+        color: $white;
+    
+        &:hover {
+            transform: translateY(-1px);        
+            box-shadow: 0 4px 4px -1px $shadow-hover;
+            color: $white;
+            background-color: lighten($green, 3%);
+        }
+    }
+}
+
+.dropdown-menu {
+    a > span {
+        margin-right: 10px;
+    }
+}
+
+.num-of-posts {
+    align-self: center;
+    color: $white;
+}
+
+.container-fluid .row .container {
+    margin-top: 50px;
+
+    .panel {
+        border-radius: 0;
+    }
+    .panel-default {
+        border-color: $blue;
+
+        .panel-heading {
+            color: $white;
+            background-color: $blue;
+            border-color: $blue;
+            border-radius: 0;
+        }
+    }
+}
+
+.btn-auth {
+    box-shadow: 0 2px 2px $shadow;
+    transition: all 0.2s ease;
+    align-self: center;
+    background-color: $blue;
+    color: $white;
+
+    &:hover {
+        transform: translateY(-1px);        
+        box-shadow: 0 4px 4px -1px $shadow-hover;
+        color: $white;
+        background-color: lighten($blue, 3%);
     }
 }

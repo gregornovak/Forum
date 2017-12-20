@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Post;
+use App\Thread;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -27,8 +30,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * User can have many threads.
+     */
     public function threads() 
     {
         return $this->hasMany('App\Thread');
+    }
+
+    /**
+     * User can have many posts.
+    */
+    public function posts() 
+    {
+        return $this->hasMany('App\Post');
     }
 }

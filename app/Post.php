@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\Thread;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -37,5 +38,13 @@ class Post extends Model
     public function user()
     {
         return User::find($this->user_id);
+    }
+
+    /**
+     * Get the thread associated with this post.
+     */
+    public function thread()
+    {
+        return Thread::find($this->thread_id);
     }
 }

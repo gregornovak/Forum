@@ -35,7 +35,8 @@ class ThreadController extends Controller
             $is_updated = true;
         }
         
-        $posts = $thread->posts;
+        $posts = $thread->posts()->paginate(10);
+        
         return view('thread.thread', compact('thread', 'posts', 'is_updated'));
     }
 
@@ -80,7 +81,7 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        $threads = Thread::withCount('posts')->orderBy('created_at', 'desc')->paginate(10);
+        $threads = Thread::withCount('posts')->orderBy('updated_at', 'desc')->paginate(10);
         return view('thread.index', ['threads' => $threads]);
     }
 

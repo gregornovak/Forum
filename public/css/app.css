@@ -8567,6 +8567,15 @@ body {
   background-color: #2196f3;
 }
 
+.add-btn:hover:disabled {
+  background-color: #fff;
+  color: #2196f3;
+  -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
 .add-post-btn {
   background-color: #2196f3;
   color: #fff;
@@ -8839,5 +8848,96 @@ body {
           box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
   color: #fff;
   background-color: #71c074;
+}
+
+.thread-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.post-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.post-body p {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin: 0;
+}
+
+.post-body .edit-post-btn {
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  -ms-flex-item-align: center;
+      align-self: center;
+  background-color: #66bb6a;
+  color: #fff;
+}
+
+.post-body .edit-post-btn:hover {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  -webkit-box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  background-color: #71c074;
+}
+
+.dropdown-menu a > span {
+  margin-right: 10px;
+}
+
+.num-of-posts {
+  -ms-flex-item-align: center;
+      align-self: center;
+  color: #fff;
+}
+
+.container-fluid .row .container {
+  margin-top: 50px;
+}
+
+.container-fluid .row .container .panel {
+  border-radius: 0;
+}
+
+.container-fluid .row .container .panel-default {
+  border-color: #2196f3;
+}
+
+.container-fluid .row .container .panel-default .panel-heading {
+  color: #fff;
+  background-color: #2196f3;
+  border-color: #2196f3;
+  border-radius: 0;
+}
+
+.btn-auth {
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  -ms-flex-item-align: center;
+      align-self: center;
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.btn-auth:hover {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  -webkit-box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  background-color: #309df4;
 }
 

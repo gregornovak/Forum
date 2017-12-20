@@ -10,7 +10,7 @@
                 <h2>List of threads</h3>
                 <button type="button" class="btn add-btn @guest disabled @endguest" @guest disabled @endguest data-toggle="modal" data-target="#create-thread-modal">
                     @guest
-                        <span data-toggle="tooltip" data-placement="top" title="You need to login first!">Create a thread</span>
+                        <span data-toggle="tooltip" data-placement="bottom" title="You need to login first!">Create a thread</span>
                     @else
                         Create a thread
                     @endguest
@@ -45,7 +45,10 @@
                                 </div>
                             </div>
                             <div class="thread-info">
-                                <small>Posted by: <strong>{{ $thread->user()['nickname'] }}</strong>, {{ $thread->created_at->diffForHumans() }}</small>                            
+                                <small class="posted-by">Posted by: <strong>{{ $thread->user()['nickname'] }}</strong>, {{ $thread->created_at->diffForHumans() }}</small>
+                                @if($thread->updated_at->gt($thread->created_at))
+                                    <small class="last-message">Last message: <i>{{ $thread->updated_at->diffForHumans() }}</i></small>
+                                @endif
                             </div>
                         </a>
                     @endforeach
@@ -67,6 +70,13 @@
     <script>
     $(function(){
         $('[data-toggle="tooltip"]').tooltip();
+
+        document.body.addEventListener('click', closeNotification);
+        function closeNotification(e) {
+            if(e.target.classList.contains('flash-close')) {
+                e.target.parentElement.parentElement.remove();
+            }
+        }
     });
     </script>
 @endsection
