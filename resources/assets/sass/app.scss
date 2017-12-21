@@ -445,6 +445,7 @@ body {
     p {
         flex: 1;
         margin: 0;
+        padding-right: 5px;
     }
 
     .edit-post-btn {
@@ -504,5 +505,48 @@ body {
         box-shadow: 0 4px 4px -1px $shadow-hover;
         color: $white;
         background-color: lighten($blue, 3%);
+    }
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+
+    &:hover {
+        background-color: $white;
+
+        .icon-bar {
+            background-color: $blue;
+        }
+    }
+
+    .icon-bar {
+        background-color: $white;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .thread-heading {
+        h2 {
+            font-size: 24px;
+        }
+
+        .thread-updated {
+            bottom: 5px;
+            font-size: 12px;
+        }
+    }
+
+    .thread-heading-container .thread-heading .thread-updated {
+        position: absolute;
+        bottom: 5px;
+        left: 65px;
+        color: #3F51B5;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: $black;
     }
 }

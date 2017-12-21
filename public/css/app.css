@@ -8870,6 +8870,7 @@ body {
       -ms-flex: 1;
           flex: 1;
   margin: 0;
+  padding-right: 5px;
 }
 
 .post-body .edit-post-btn {
@@ -8939,5 +8940,46 @@ body {
           box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.35);
   color: #fff;
   background-color: #309df4;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+}
+
+.navbar-default .navbar-toggle:hover {
+  background-color: #fff;
+}
+
+.navbar-default .navbar-toggle:hover .icon-bar {
+  background-color: #2196f3;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
+@media screen and (max-width: 500px) {
+  .thread-heading h2 {
+    font-size: 24px;
+  }
+
+  .thread-heading .thread-updated {
+    bottom: 5px;
+    font-size: 12px;
+  }
+
+  .thread-heading-container .thread-heading .thread-updated {
+    position: absolute;
+    bottom: 5px;
+    left: 65px;
+    color: #3F51B5;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #000;
+  }
 }
 

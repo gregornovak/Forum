@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="thread-heading-container">
-        <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 thread-heading">
+        <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-xs-12 thread-heading">
             <a href="{{ route('index') }}" class="glyphicon glyphicon-chevron-left"></a>
             <h2>{{ $thread->title }}</h2>
             @if(Auth::user() != null && $thread->user_id == Auth::user()->id)
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="thread-posts-container">
-        <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12">
+        <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
             @if($posts->count())
                 <ul class="list-posts">
                     @foreach($posts as $post)
@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="thread-comment-container">
-        <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12">
+        <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
             @guest
                 <div class="login-notice">Please <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">register</a> to leave a message.</div>
             @else
@@ -97,7 +97,7 @@
                     rootEl.classList.add('flash-container', 'flash-success-messages');
 
                     let containerEl = document.createElement('div');
-                    containerEl.classList.add('col-lg-6', 'col-lg-offset-3', 'col-md-10', 'col-md-offset-1', 'col-sm-12', 'flash-parent');
+                    containerEl.classList.add('col-lg-6', 'col-lg-offset-3', 'col-md-10', 'col-md-offset-1', 'col-sm-12', 'col-xs-12', 'flash-parent');
 
                     let textEl = document.createElement('p');
                     textEl.classList.add('success-text');
@@ -136,7 +136,7 @@
                     rootEl.classList.add('flash-container', 'flash-error-messages');
 
                     let containerEl = document.createElement('div');
-                    containerEl.classList.add('col-lg-6', 'col-lg-offset-3', 'col-md-10', 'col-md-offset-1', 'col-sm-12', 'flash-parent');
+                    containerEl.classList.add('col-lg-6', 'col-lg-offset-3', 'col-md-10', 'col-md-offset-1', 'col-sm-12', 'col-xs-12', 'flash-parent');
 
                     let textEl = document.createElement('p');
                     textEl.classList.add('error-text');

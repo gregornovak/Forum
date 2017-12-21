@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="thread-heading-container">
-        <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12">
+        <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
             <div class="thread-heading">
                 <h2>List of your posts</h2>
                 <span class="num-of-posts">You have {{ $posts->count() }} posts.</span>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="threads-list-container">
-        <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12">
+        <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
             
             @if($posts->count())
                 <div class="list-group thread-list">
